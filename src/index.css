@@ -1,0 +1,9 @@
+@import "tailwindcss";
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Hapus scrollbar pada Chrome, Safari */
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* Hapus scrollbar pada IE */
+  scrollbar-width: none; /* Hapus scrollbar pada Firefox */
+}
