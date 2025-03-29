@@ -2,6 +2,8 @@ import React from "react";
 import HeroSection from "../Fragments/HeroSection";
 import Navbar from "../Fragments/Navbar";
 import ListAnime from "../Fragments/LIstAnime";
+import LIstRecomedasionAnime from "../Fragments/LIstRecomedasionAnime";
+import Footer from "../Fragments/Footer";
 
 const HeroContent = () => {
   return (
@@ -14,6 +16,12 @@ const HeroContent = () => {
       {/* Bagian ListAnime */}
       <div className=" bg-gray-200">
         <ListAnime />
+      </div>
+      <div className=" bg-gray-200">
+        <LIstRecomedasionAnime />
+      </div>
+      <div className=" bg-gray-200">
+        <Footer />
       </div>
     </div>
   );

@@ -5,6 +5,21 @@ import Tittle from "../Elements/Tittle";
 
 const Navbar = () => {
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
+  const [searchAnime, setSearchAnime] = useState("");
+
+  // handle search anime dereksi ketikan
+  const handleSeacrhAnime = (e) => {
+    setSearchAnime(e.target.value);
+    console.log("cari apa" , searchAnime)
+  };
+
+  // handle keydown enter
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      console.log("lagi di cari" , searchAnime)
+      //logic search ntar dulu aja 
+    }
+  };
 
   const handelNavbarIsOpen = () => {
     setNavbarIsOpen(!navbarIsOpen);
@@ -14,14 +29,33 @@ const Navbar = () => {
       <div className="flex lg:flex-row items-center justify-between w-full p-1 flex-col overflow-hidden">
         <Tittle handelNavbarIsOpen={handelNavbarIsOpen} />
         <div
-          className={`hidden lg:flex flex-col md:flex-col lg:flex-row gap-4 text-center items-center justify-center font-semibold transform transition duration-300 ease-in-out  h-auto` }
+          className={`hidden lg:flex flex-col md:flex-col lg:flex-row gap-4 text-center items-center justify-center font-semibold transform transition duration-300 ease-in-out  h-auto`}
         >
-          <ListItems>Home</ListItems>
-          <ListItems>Anime</ListItems>
-          <ListItems>Trending</ListItems>
-          <ListItems>Category</ListItems>
+          <ListItems>
+            <input
+              type="text"
+              placeholder="Search Anime"
+              className="min-w-32 shadow-md min-h-9 p-2 rounded-md"
+              onChange={handleSeacrhAnime}
+              value={searchAnime}
+              onKeyDown={handleKeyDown}
+
+            />
+          </ListItems>
+          <ListItems Class={"hover:underline hover:bg-blue-500"}>
+            Home
+          </ListItems>
+          <ListItems Class={"hover:underline hover:bg-blue-500"}>
+            Anime
+          </ListItems>
+          <ListItems Class={"hover:underline hover:bg-blue-500"}>
+            Trending
+          </ListItems>
+          <ListItems Class={"hover:underline hover:bg-blue-500"}>
+            Category
+          </ListItems>
           <Button Class="bg-gray-300 hover:bg-gray-400"> Aplikasi </Button>
-          <Button Class="bg-gray-300 hover:bg-gray-400"> IsiUlang </Button>
+
           <Button Class="bg-pink-500 hover:bg-pink-600 text-white">
             Premium
           </Button>
@@ -41,7 +75,6 @@ const Navbar = () => {
             <ListItems>Trending</ListItems>
             <ListItems>Category</ListItems>
             <Button Class="bg-gray-300 hover:bg-gray-400"> Aplikasi </Button>
-            <Button Class="bg-gray-300 hover:bg-gray-400"> IsiUlang </Button>
             <Button Class="bg-pink-500 hover:bg-pink-600 text-white">
               Premium
             </Button>

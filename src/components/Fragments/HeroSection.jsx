@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { UseGetAnime } from "../../hooks/UseGetAnime";
 import ButtonCarousel from "../Elements/ButtonCarousel";
 import ContaineHero from "../Elements/ContaineHero";
+import { UseGetPopularAnime } from "../../hooks/UseGetAnime";
 
 const HeroSection = () => {
   // active index untuk menyesuaikan gamabr yg di tampilkan carousel
   const [activeIndex, setActiveIndex] = useState(0);
   // mengambil data daari api,hooks customs
-  const { animes, isLoading } = UseGetAnime("popular")
+  const { popularAnimes, isLoading } = UseGetPopularAnime();
 
   // handle event next carousel next
   const handleNext = () => {
-    setActiveIndex((nextIndex) => (nextIndex + 1) % animes.length);
+    setActiveIndex((nextIndex) => (nextIndex + 1) % popularAnimes.length);
   };
   // handle event prev carousel prevous
   const handlePrev = () => {
     setActiveIndex(
-      (prevIndex) => (prevIndex - 1 + animes.length) % animes.length
+      (prevIndex) => (prevIndex - 1 + popularAnimes.length) % popularAnimes.length
     );
   };
 
@@ -24,14 +24,13 @@ const HeroSection = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  
 
   return (
     <div className=" container sm:mx-auto lg:mx-15 flex lg:flex-row flex-col  items-center min-w-full">
-      <ContaineHero animes={animes} activeIndex={activeIndex} />
+      <ContaineHero popularAnimes={popularAnimes} activeIndex={activeIndex} />
       {/* mapping data dari api gamabr */}
       <div className="relative w-1/2 min-h-screen overflow-hidden ">
-        {animes.map((anime, index) => (
+        {popularAnimes.map((anime, index) => (
           <div key={index}>
             <img
               src={anime?.img}

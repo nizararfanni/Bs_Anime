@@ -2,7 +2,7 @@ import React from 'react'
 
 const CardAnimeList = ({infiniteAnimes ,isLoading}) => {
   return (
-    <div className="flex overflow-x-auto w-full gap-4 py-4 scrollbar-hidden">
+    <div className="flex overflow-x-auto max-w-full gap-4 py-4 scrollbar-hidden max-h-[300px] overflow-hidden">
       {infiniteAnimes.length > 0 &&
         !isLoading &&
         infiniteAnimes.map((anime, index) => (
@@ -13,7 +13,7 @@ const CardAnimeList = ({infiniteAnimes ,isLoading}) => {
             <img
               src={anime?.img}
               alt={anime?.title || "Anime Image"}
-              className="w-full h-3/4 object-top rounded-md "
+              className="w-full max-h-3/4 object-top rounded-md "
             />
             {/* Overlay tiitle */}
             <div className="absolute left-0 right-0 bottom-0 top-3/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out text-center font-bold text-2xl text-white z-10">
@@ -44,12 +44,12 @@ const CardAnimeList = ({infiniteAnimes ,isLoading}) => {
                 {anime?.title || "No Title"}
               </h3>
               <div className="flex justify-between items-center text-white text-sm font-semibold">
-                <p>Rating :</p>
-                <p>Status :</p>
+                <p>Type :</p>
+                <p>Chapter :</p>
               </div>
               <div className="flex justify-between items-center text-white text-sm font-semibold">
-                <p>{anime?.rating || "9/10"}</p>
-                <p>{anime?.status || "not complete"}</p>
+                <p>{anime?.type || "9/10"}</p>
+                <p>{anime?.chapter || "not complete"}</p>
               </div>
             </div>
           </div>
