@@ -1,6 +1,7 @@
 import React from "react";
 import { UseGetDetailAnime, UseGetPopularAnime } from "../../hooks/UseGetAnime";
 import LIstAnimePopular from "../Elements/LIstAnimePopular";
+import { Link } from "react-router-dom";
 
 const DetailAnime = () => {
   const { popularAnimes, isLoading } = UseGetPopularAnime();
@@ -22,6 +23,7 @@ const DetailAnime = () => {
         </div>
         <LIstAnimePopular popularAnimes={popularAnimes}></LIstAnimePopular>
       </div>
+    
     </div>
   );
 };

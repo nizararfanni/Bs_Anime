@@ -1,6 +1,7 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const CardAnimeList = ({infiniteAnimes ,isLoading}) => {
+const CardAnimeList = ({ infiniteAnimes, isLoading }) => {
   return (
     <div className="flex overflow-x-auto max-w-full gap-4 py-4 scrollbar-hidden max-h-[300px] overflow-hidden">
       {infiniteAnimes.length > 0 &&
@@ -20,10 +21,19 @@ const CardAnimeList = ({infiniteAnimes ,isLoading}) => {
               {" "}
               {anime?.title || "No Title"}
             </div>
+            {/* OVERLAY DETAIL ANIME */}
+            {/* link menuju detail anime menggunakan paramsuse */}
+            <Link
+              to={`/detail/${anime?.link}`}
+              className="text-white hover:underline absolute left-0 bottom-0 right-0 top-1/2 text-center z-50 opacity-0 group-hover:opacity-100 "
+            >
+              View Details
+              {/* {console.log("ini link", anime?.link)} */}
+            </Link>
             {/* Overlay biru */}
             <div className="absolute left-0 bottom-0 right-0 top-0 bg-gradient-to-t from-[#98D8EF] via-[#98D8EF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></div>
             {/* Ikon Play */}
-            <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+            <div className="absolute left-0 bottom-1/5 right-0 top-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -56,6 +66,6 @@ const CardAnimeList = ({infiniteAnimes ,isLoading}) => {
         ))}
     </div>
   );
-}
+};
 
-export default CardAnimeList
+export default CardAnimeList;

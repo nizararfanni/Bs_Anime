@@ -26,6 +26,7 @@ export const UseGetPopularAnime = () => {
   return { popularAnimes, isLoading };
 };
 
+// anime baru
 export const UseGetLatestAnime = (page = 1) => {
   const [latestAnimes, setLatestAnimes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,6 +54,7 @@ export const UseGetLatestAnime = (page = 1) => {
   return { latestAnimes, isLoading };
 };
 
+// detailanime
 export const UseGetDetailAnime = (id = 1) => {
   const [detailAnimes, setDetailAnimes] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -65,11 +67,12 @@ export const UseGetDetailAnime = (id = 1) => {
           `https://laravel-api-manga-scraper.vercel.app/api/api/detail/${id}`
         );
         const data = await response.json();
-        console.log("data", data?.data);
-        setDetailAnimes(data?.data || null);
+        console.log(data);
+        setDetailAnimes(data.data);
         setIsLoading(false);
       } catch (error) {
-        console.log("error", error);
+        console.log("eerror", error);
+        setIsLoading(false);
       } finally {
         setIsLoading(false);
       }
@@ -78,4 +81,33 @@ export const UseGetDetailAnime = (id = 1) => {
   }, [id]);
 
   return { detailAnimes, isLoading };
+};
+
+// baca anime
+export const UseGetbacaAnime = (url ) => {
+  const [bacaAnime, setBacaAnime] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const getDetailAnime = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://laravel-api-manga-scraper.vercel.app/api/api/baca/${url}`
+        );
+        // Cek apakah respons berupa JSON
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data.data);
+        setBacaAnime(data?.data);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getDetailAnime();
+  }, [url]);
+  return { bacaAnime, isLoading };
 };

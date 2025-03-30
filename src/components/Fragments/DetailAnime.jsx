@@ -1,8 +1,12 @@
 import React from "react";
 import { UseGetDetailAnime } from "../../hooks/UseGetAnime";
+import { Link, useParams } from "react-router-dom";
 
 const DetailAnime = () => {
-  const { detailAnimes, isLoading } = UseGetDetailAnime(100); // Hook dipanggil dengan benar di dalam komponen
+  // slug id dari path detail:id
+  const { id } = useParams();
+  // id dari slug detail
+  const { detailAnimes, isLoading } = UseGetDetailAnime(id); // Hook dipanggil dengan benar di dalam komponen
 
   if (isLoading) {
     return (
@@ -21,14 +25,14 @@ const DetailAnime = () => {
   }
 
   return (
-    <div className="bg-gradient-to-r from-gray-100 via-gray-300/50 to-gray-300 min-h-[400px] w-full flex">
-      <div className="w-full flex flex-col">
-        <div className="p-2 font-semibold text-2xl">
+    <div className="bg-gradient-to-r from-gray-100 via-gray-300/50 to-gray-300 min-h-screen w-full flex justify-center items-center">
+      <div className="w-full flex flex-col justify-center items-center">
+        <div className=" font-semibold text-2xl">
           <h2>Detail Anime</h2>
         </div>
-        <div className="flex flex-col p-4  justify-center items-center min-h-screen mx-auto">
+        <div className="flex flex-col justify-center items-center min-h-screen mx-auto container p-5">
           {detailAnimes && (
-            <div className="m-3">
+            <div className="m-3 flex justify-center flex-col items-center ">
               <h3 className="text-3xl font-bold">
                 Judul:{detailAnimes?.judul}
               </h3>
@@ -38,17 +42,51 @@ const DetailAnime = () => {
                 className="items-center w-32 h-40"
               />
               <p className="text-sm font-semibold">
-                Type: {detailAnimes?.jenis}
-              </p>
-              <p className="text-sm font-semibold">
-                Rate: {detailAnimes?.ratting}
-              </p>
-              <p className="text-sm font-semibold">
                 judul lain :{detailAnimes?.judul_alternatif}
               </p>
+              <div className="grid grid-cols-3 gap-3 py-3">
+                <div className="col-span-1">
+                  <p className="text-sm font-semibold ">
+                    Type: {detailAnimes?.jenis}
+                  </p>
+                </div>
+                <div className="col-span-1">
+                  <p className="text-sm font-semibold">
+                    Rate: {detailAnimes?.ratting}
+                  </p>
+                </div>
+                <div className="col-span-1">
+                  <p className="text-sm font-semibold">
+                    Genre: {detailAnimes?.genre[0]},{detailAnimes?.genre[1]}
+                  </p>
+                </div>
+              </div>
               <div className="flex justify-between items-center text-sm font-semibold">
-                <p>Deskripsi:{detailAnimes?.sinopsis}</p>
-                <p>Chapter :{detailAnimes?.chapter[0].url}</p>
+                <p>Sinopsis:{detailAnimes?.sinopsis}</p>
+              </div>
+              {/* daftar chapter */}
+              <div className="grid grid-cols-2 gap-4">
+                {detailAnimes?.chapter
+                  .sort((a, b) => {
+                    const chapterA = parseInt(a.chapter.split(" ")[1]);
+                    const chapterB = parseInt(b.chapter.split(" ")[1]);
+                    return chapterA - chapterB; // Mengurutkan dari kecil ke besar
+                  })
+                  .map((anime, index) => (
+                    <div
+                      key={index}
+                      className="p-2 border border-gray-300 rounded"
+                    >
+                      <p>
+                        <Link
+                          to={`/baca/${anime.url}`}
+                          className="text-blue-500 hover:underline"
+                        >
+                          {anime.chapter}
+                        </Link>
+                      </p>
+                    </div>
+                  ))}
               </div>
             </div>
           )}
