@@ -10,14 +10,14 @@ const Navbar = () => {
   // handle search anime dereksi ketikan
   const handleSeacrhAnime = (e) => {
     setSearchAnime(e.target.value);
-    console.log("cari apa" , searchAnime)
+    console.log("cari apa", searchAnime);
   };
 
   // handle keydown enter
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      console.log("lagi di cari" , searchAnime)
-      //logic search ntar dulu aja 
+      console.log("lagi di cari", searchAnime);
+      //logic search ntar dulu aja
     }
   };
 
@@ -39,7 +39,6 @@ const Navbar = () => {
               onChange={handleSeacrhAnime}
               value={searchAnime}
               onKeyDown={handleKeyDown}
-
             />
           </ListItems>
           <ListItems Class={"hover:underline hover:bg-blue-500"}>
@@ -70,10 +69,19 @@ const Navbar = () => {
                 : "-translate-y-full opacity-0"
             } h-auto`}
           >
-            <ListItems>Home</ListItems>
-            <ListItems>Anime</ListItems>
-            <ListItems>Trending</ListItems>
-            <ListItems>Category</ListItems>
+            <ListItems Class={"hover:underline hover:bg-blue-500"}>
+              Home
+            </ListItems>
+            <ListItems Class={"hover:underline hover:bg-blue-500"}>
+              Anime
+            </ListItems>
+            <ListItems Class={"hover:underline hover:bg-blue-500"}>
+              {" "}
+              Trending
+            </ListItems>
+            <ListItems Class={"hover:underline hover:bg-blue-500"}>
+              Category
+            </ListItems>
             <Button Class="bg-gray-300 hover:bg-gray-400"> Aplikasi </Button>
             <Button Class="bg-pink-500 hover:bg-pink-600 text-white">
               Premium
