@@ -1,7 +1,7 @@
 import React from "react";
 import HeroSection from "../Fragments/HeroSection";
 import Navbar from "../Fragments/Navbar";
-import ListAnime from "../Fragments/LIstAnime";
+import ListAnime from "../Fragments/ListAnime";
 import LIstRecomedasionAnime from "../Fragments/LIstRecomedasionAnime";
 import Footer from "../Fragments/Footer";
 
