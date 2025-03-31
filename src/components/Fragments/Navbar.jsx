@@ -37,17 +37,6 @@ const Navbar = () => {
         <div
           className={`hidden lg:flex flex-col md:flex-col lg:flex-row gap-4 text-center items-center justify-center font-semibold transform transition duration-300 ease-in-out  h-auto`}
         >
-          {/* <div className="relative w-full ">
-            Search
-            <SearchAnimeList
-              searchAnime={searchAnime}
-              handleSeacrhAnime={handleSeacrhAnime}
-              searchResults={searchAnimeId}
-              isLoading={isLoading}
-              error={error}
-              handleKeyDown={handleKeyDown}
-            />
-          </div> */}
           <div className="relative">
             <SearchAnimeList
               error={error}
