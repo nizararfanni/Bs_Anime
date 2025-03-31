@@ -44,10 +44,12 @@ const Navbar = () => {
               handleSeacrhAnime={handleSeacrhAnime}
               isLoading={isLoading}
               searchAnime={searchAnime}
-              searchResults={searchAnimeId} 
+              searchResults={searchAnimeId}
             ></SearchAnimeList>
           </div>
-          <ListItems Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}>
+          <ListItems
+            Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
+          >
             Home
           </ListItems>
           <ListItems Class={"hover:underline hover:bg-blue-500"}>
@@ -75,17 +77,25 @@ const Navbar = () => {
                 : "-translate-y-full opacity-0"
             } h-auto`}
           >
-            <ListItems Class={"hover:underline hover:bg-blue-500"}>
+            <ListItems
+              Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
+            >
               Home
             </ListItems>
-            <ListItems Class={"hover:underline hover:bg-blue-500"}>
+            <ListItems
+              Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
+            >
               Anime
             </ListItems>
-            <ListItems Class={"hover:underline hover:bg-blue-500"}>
+            <ListItems
+              Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
+            >
               {" "}
               Trending
             </ListItems>
-            <ListItems Class={"hover:underline hover:bg-blue-500"}>
+            <ListItems
+              Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
+            >
               Category
             </ListItems>
             <Button Class="bg-gray-300 hover:bg-gray-400"> Aplikasi </Button>
