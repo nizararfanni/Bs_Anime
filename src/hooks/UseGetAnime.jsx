@@ -84,7 +84,7 @@ export const UseGetDetailAnime = (id = 1) => {
 };
 
 // baca anime
-export const UseGetbacaAnime = (url ) => {
+export const UseGetbacaAnime = (url) => {
   const [bacaAnime, setBacaAnime] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -110,4 +110,50 @@ export const UseGetbacaAnime = (url ) => {
     getDetailAnime();
   }, [url]);
   return { bacaAnime, isLoading };
+};
+
+
+
+//handlebuat cari search
+export const UseSearchAnime = (title) => {
+  const [searchAnimeId, setSearchAnimeId] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Jangan fetch kalau title kosong
+    if (!title.trim()) {
+      setSearchAnimeId([]);
+      setIsLoading(false);
+      return;
+    }
+
+// nunggu  dulu sebelum fetch
+    const debounce = setTimeout(async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const response = await fetch(
+          `https://laravel-api-manga-scraper.vercel.app/api/api/search/${encodeURIComponent(
+            title
+          )}`
+        );
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+        const data = await response.json();
+        console.log("Hasil pencarian:", data.data);
+        setSearchAnimeId(data.data || []);
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+        setError(error.message || "Failed to fetch search results");
+        setSearchAnimeId([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }, 500);
+
+    // Cleanup: Batalkan timeout kalau title berubah sebelum 500ms
+    return () => clearTimeout(debounce);
+  }, [title]);
+
+  return { searchAnimeId, isLoading, error };
 };

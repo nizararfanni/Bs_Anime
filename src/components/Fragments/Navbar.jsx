@@ -2,46 +2,63 @@ import React, { useState } from "react";
 import ListItems from "../Elements/ListItems";
 import Button from "../Elements/Button";
 import Tittle from "../Elements/Tittle";
+import { UseSearchAnime } from "../../hooks/UseGetAnime";
+import SearchAnimeList from "./SearchAnimeList";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
   const [searchAnime, setSearchAnime] = useState("");
+  const { searchAnimeId, isLoading, error } = UseSearchAnime(searchAnime);
+  const navigate = useNavigate();
 
   // handle search anime dereksi ketikan
   const handleSeacrhAnime = (e) => {
     setSearchAnime(e.target.value);
-    console.log("cari apa", searchAnime);
+    console.log("search", searchAnime);
   };
 
-  // handle keydown enter
+  // Handle keydown enter
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      console.log("lagi di cari", searchAnime);
-      //logic search ntar dulu aja
+    if (e.key === "Enter" && searchAnime.trim()) {
+      navigate(`/search/${encodeURIComponent(searchAnime)}`);
     }
   };
 
+  // handle open and close navbar
   const handelNavbarIsOpen = () => {
     setNavbarIsOpen(!navbarIsOpen);
   };
+
   return (
-    <div className="bg-[#F7F7F7] mx-auto flex lg:flex-row shadow-lg p-2 w-full fixed top-0 left-0 right-0 z-50">
-      <div className="flex lg:flex-row items-center justify-between w-full p-1 flex-col overflow-hidden">
+    <div className="bg-[#F7F7F7] mx-auto flex lg:flex-row shadow-lg p-2 w-full fixed top-0 left-0 right-0 z-10">
+      <div className="flex lg:flex-row items-center justify-between w-full p-1 flex-col ">
         <Tittle handelNavbarIsOpen={handelNavbarIsOpen} />
         <div
           className={`hidden lg:flex flex-col md:flex-col lg:flex-row gap-4 text-center items-center justify-center font-semibold transform transition duration-300 ease-in-out  h-auto`}
         >
-          <ListItems>
-            <input
-              type="text"
-              placeholder="Search Anime"
-              className="min-w-32 shadow-md min-h-9 p-2 rounded-md"
-              onChange={handleSeacrhAnime}
-              value={searchAnime}
-              onKeyDown={handleKeyDown}
+          {/* <div className="relative w-full ">
+            Search
+            <SearchAnimeList
+              searchAnime={searchAnime}
+              handleSeacrhAnime={handleSeacrhAnime}
+              searchResults={searchAnimeId}
+              isLoading={isLoading}
+              error={error}
+              handleKeyDown={handleKeyDown}
             />
-          </ListItems>
-          <ListItems Class={"hover:underline hover:bg-blue-500"}>
+          </div> */}
+          <div className="relative">
+            <SearchAnimeList
+              error={error}
+              handleKeyDown={handleKeyDown}
+              handleSeacrhAnime={handleSeacrhAnime}
+              isLoading={isLoading}
+              searchAnime={searchAnime}
+              searchResults={searchAnimeId} 
+            ></SearchAnimeList>
+          </div>
+          <ListItems Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}>
             Home
           </ListItems>
           <ListItems Class={"hover:underline hover:bg-blue-500"}>

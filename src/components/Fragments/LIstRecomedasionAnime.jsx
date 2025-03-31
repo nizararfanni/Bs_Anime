@@ -13,7 +13,7 @@ const DetailAnime = () => {
     );
   }
 
-  console.log(popularAnimes);
+  // console.log(popularAnimes);
 
   return (
     <div className=" bg-gradient-to-r from-gray-100 via-gray-300/50 to-gray-300 min-h-[400px] w-full flex  ">
