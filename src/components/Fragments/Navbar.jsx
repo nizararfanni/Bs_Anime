@@ -71,12 +71,22 @@ const Navbar = () => {
 
         {navbarIsOpen && (
           <div
-            className={`flex flex-col md:flex-col lg:flex-row gap-4 text-center items-center justify-center font-semibold transform transition duration-300 ease-in-out ${
+            className={` flex flex-col md:flex-col lg:flex-row gap-4 text-center items-center justify-center font-semibold transform transition duration-300 ease-in-out ${
               navbarIsOpen
                 ? "translate-y-0 opacity-100"
                 : "-translate-y-full opacity-0"
             } h-auto`}
           >
+            <div className="relative">
+              <SearchAnimeList
+                error={error}
+                handleKeyDown={handleKeyDown}
+                handleSeacrhAnime={handleSeacrhAnime}
+                isLoading={isLoading}
+                searchAnime={searchAnime}
+                searchResults={searchAnimeId}
+              ></SearchAnimeList>
+            </div>
             <ListItems
               Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
             >
