@@ -15,7 +15,7 @@ const Navbar = () => {
   // handle search anime dereksi ketikan
   const handleSeacrhAnime = (e) => {
     setSearchAnime(e.target.value);
-    console.log("search", searchAnime);
+    // console.log("search", searchAnime);
   };
 
   // Handle keydown enter
@@ -29,6 +29,10 @@ const Navbar = () => {
   const handelNavbarIsOpen = () => {
     setNavbarIsOpen(!navbarIsOpen);
   };
+
+  // ambil data dari local storage
+  const getUserName = localStorage.getItem("user");
+  const userNameLogin = JSON.parse(getUserName);
 
   return (
     <div className="bg-[#F7F7F7] mx-auto flex lg:flex-row shadow-lg p-2 w-full fixed top-0 left-0 right-0 z-10">
@@ -66,7 +70,17 @@ const Navbar = () => {
           <Button Class="bg-pink-500 hover:bg-pink-600 text-white">
             Premium
           </Button>
-          <Button Class="bg-black text-white"> Masuk </Button>
+          {userNameLogin ? (
+            <div className="bg-pink-500 px-2 py-1 hover:bg-pink-600 rounded-md font-semibold text-white ">
+              {/* ambil username aja untuk di tampilkan  */}
+              {userNameLogin.username}
+            </div>
+          ) : (
+            <Button Class="bg-black text-white" to={"/login"}>
+              {" "}
+              Masuk{" "}
+            </Button>
+          )}
         </div>
 
         {navbarIsOpen && (
@@ -112,7 +126,14 @@ const Navbar = () => {
             <Button Class="bg-pink-500 hover:bg-pink-600 text-white">
               Premium
             </Button>
-            <Button Class="bg-black text-white"> Masuk </Button>
+            {userNameLogin ? (
+              <div className="bg-pink-500 px-2 py-1 hover:bg-pink-600 rounded-md font-semibold text-white ">
+                {/* ambil username aja untuk di tampilkan  */}
+                {userNameLogin.username}
+              </div>
+            ) : (
+              <Button Class="bg-black text-white"> Masuk </Button>
+            )}
           </div>
         )}
       </div>

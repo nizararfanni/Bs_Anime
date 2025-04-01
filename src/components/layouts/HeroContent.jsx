@@ -6,6 +6,7 @@ import LIstRecomedasionAnime from "../Fragments/LIstRecomedasionAnime";
 import Footer from "../Fragments/Footer";
 
 const HeroContent = () => {
+
   return (
     <div className=" w-full bg-gradient-to-r from-gray-100 via-gray-300/50 to-gray-300">
       {/* Bagian Hero */}

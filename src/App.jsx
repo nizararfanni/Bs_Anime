@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import DetailAnime from "./components/Fragments/DetailAnime";
 import BacaAnime from "./components/Fragments/BacaAnime";
 import SearchAnimeList from "./components/Fragments/SearchAnimeList";
-
+import Login from "./components/layouts/Login";
 
 const App = () => {
   return (
@@ -14,6 +14,8 @@ const App = () => {
       <Route path="/detail/:id" element={<DetailAnime />} />
       <Route path="/baca/:url" element={<BacaAnime />} />
       <Route path="/search/:title" element={<SearchAnimeList />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };
