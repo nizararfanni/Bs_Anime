@@ -54,7 +54,7 @@ const Navbar = () => {
           <ListItems
             Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
           >
-            Home
+            <Link to="/home">Home</Link>
           </ListItems>
           <ListItems Class={"hover:underline hover:bg-blue-500"}>
             Anime
