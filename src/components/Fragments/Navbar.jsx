@@ -10,6 +10,7 @@ const Navbar = () => {
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
   const [searchAnime, setSearchAnime] = useState("");
   const { searchAnimeId, isLoading, error } = UseSearchAnime(searchAnime);
+  const [selected, setSelected] = useState("");
   const navigate = useNavigate();
 
   // handle search anime dereksi ketikan
@@ -32,6 +33,12 @@ const Navbar = () => {
 
   // ambil data dari local storage
   const getUserName = JSON.parse(localStorage.getItem("user"));
+
+  // // handle selected
+  // const handleSelected = (e) => {
+  //   setSelected(e.target.value);
+  //   console.log("pilihan dropwdown", e.target.value);
+  // };
 
   return (
     <div className="bg-[#F7F7F7] mx-auto flex lg:flex-row shadow-lg p-2 w-full fixed top-0 left-0 right-0 z-10">
@@ -61,9 +68,7 @@ const Navbar = () => {
           <ListItems Class={"hover:underline hover:bg-blue-500"}>
             Trending
           </ListItems>
-          <ListItems Class={"hover:underline hover:bg-blue-500"}>
-            Category
-          </ListItems>
+        <Button to={"/type"}>Type Animes</Button>
           <Button Class="bg-gray-300 hover:bg-gray-400"> Aplikasi </Button>
 
           <Button

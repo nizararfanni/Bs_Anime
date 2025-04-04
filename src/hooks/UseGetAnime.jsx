@@ -112,8 +112,6 @@ export const UseGetbacaAnime = (url) => {
   return { bacaAnime, isLoading };
 };
 
-
-
 //handlebuat cari search
 export const UseSearchAnime = (title) => {
   const [searchAnimeId, setSearchAnimeId] = useState([]);
@@ -128,7 +126,7 @@ export const UseSearchAnime = (title) => {
       return;
     }
 
-// nunggu  dulu sebelum fetch
+    // nunggu  dulu sebelum fetch
     const debounce = setTimeout(async () => {
       try {
         setIsLoading(true);
@@ -156,4 +154,62 @@ export const UseSearchAnime = (title) => {
   }, [title]);
 
   return { searchAnimeId, isLoading, error };
+};
+
+// fetch api according type anime
+export const UseGetAnimeByType = ( ) => {
+  const [TypeAnimes, setTypeAnimes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const getAnimeByType = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://laravel-api-manga-scraper.vercel.app/api/api/jenis/`
+        );
+        if(!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+        const result = await response.json();
+        // console.log("data", result);
+        setTypeAnimes(result.data || []);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getAnimeByType();
+  }, []);
+  return { TypeAnimes, isLoading };
+};
+
+
+
+export const useFetchAnimeByTypeDetails = (jenis, page) => {
+  const [animeTypeDetails, setAnimeTypeDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAnime = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://laravel-api-manga-scraper.vercel.app/api/api/jenis/${jenis}/${page}`
+        );
+        const result = await response.json();
+        console.log("data", result.data);
+        setAnimeTypeDetails(result.data || []);
+      } catch (error) {
+        console.error("Error fetching anime by jenis:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAnime();
+  }, [jenis, page]);
+
+  return { animeTypeDetails, isLoading };
 };

@@ -8,6 +8,7 @@ import SearchAnimeList from "./components/Fragments/SearchAnimeList";
 import Login from "./components/layouts/Login";
 import Register from "./components/layouts/Register";
 import Premium from "./components/layouts/Premium";
+import TypeAnime from "./components/layouts/TypeAnime";
 
 const App = () => {
   return (
@@ -18,8 +19,9 @@ const App = () => {
       <Route path="/search/:title" element={<SearchAnimeList />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} /> 
-      <Route path="/premium" element={<Premium />} /> 
+      <Route path="/type" element={<TypeAnime />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/premium" element={<Premium />} />
     </Routes>
   );
 };
