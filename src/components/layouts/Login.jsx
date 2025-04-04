@@ -29,12 +29,20 @@ const Login = () => {
       setError("Form tidak boleh kosong");
       return;
     }
-    //ambil data dri local storage  
-    const getUser = localStorage.getItem("user");
-    const userNameLogin = JSON.parse(getUser);
+    //ambil data dri local storage
+    const getUser = JSON.parse(localStorage.getItem("user"));
+
+    //cek apakah user ada di local storage
+    if (!getUser) {
+      setError((prevError) => (prevError = "User tidak ditemukan"));
+      return;
+    }
 
     // cek username dan password apakah sama kaya waktu register
-    if (userNameLogin.username !== formData.username || userNameLogin.password !== formData.password) {
+    if (
+      getUser?.username !== formData.username ||
+      getUser?.password !== formData.password
+    ) {
       setError("Username atau password salah");
       return;
     }
@@ -96,12 +104,12 @@ const Login = () => {
             onClick={handleSubmited}
             Class={
               " justify-center bg-blue-500 hover:bg-blue-600 p-4 text-white"
-            } 
+            }
           >
             Login
           </Button>
         </div>
-       <FooterAuth isLogin={true}></FooterAuth>
+        <FooterAuth isLogin={true}></FooterAuth>
       </div>
     </div>
   );

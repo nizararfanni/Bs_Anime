@@ -31,8 +31,7 @@ const Navbar = () => {
   };
 
   // ambil data dari local storage
-  const getUserName = localStorage.getItem("user");
-  const userNameLogin = JSON.parse(getUserName);
+  const getUserName = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div className="bg-[#F7F7F7] mx-auto flex lg:flex-row shadow-lg p-2 w-full fixed top-0 left-0 right-0 z-10">
@@ -67,13 +66,16 @@ const Navbar = () => {
           </ListItems>
           <Button Class="bg-gray-300 hover:bg-gray-400"> Aplikasi </Button>
 
-          <Button Class="bg-pink-500 hover:bg-pink-600 text-white">
+          <Button
+            Class="bg-pink-500 hover:bg-pink-600 text-white "
+            to={"/premium"}
+          >
             Premium
           </Button>
-          {userNameLogin ? (
+          {getUserName ? (
             <div className="bg-pink-500 px-2 py-1 hover:bg-pink-600 rounded-md font-semibold text-white ">
               {/* ambil username aja untuk di tampilkan  */}
-              {userNameLogin.username}
+              {getUserName.username}
             </div>
           ) : (
             <Button Class="bg-black text-white" to={"/login"}>
@@ -123,16 +125,22 @@ const Navbar = () => {
               Category
             </ListItems>
             <Button Class="bg-gray-300 hover:bg-gray-400"> Aplikasi </Button>
-            <Button Class="bg-pink-500 hover:bg-pink-600 text-white">
+            <Button
+              Class="bg-pink-500 hover:bg-pink-600 text-white"
+              to={"/premium"}
+            >
               Premium
             </Button>
-            {userNameLogin ? (
+            {getUserName ? (
               <div className="bg-pink-500 px-2 py-1 hover:bg-pink-600 rounded-md font-semibold text-white ">
                 {/* ambil username aja untuk di tampilkan  */}
-                {userNameLogin.username}
+                {getUserName.username}
               </div>
             ) : (
-              <Button Class="bg-black text-white"> Masuk </Button>
+              <Button Class="bg-black text-white" to={"/login"}>
+                {" "}
+                Masuk{" "}
+              </Button>
             )}
           </div>
         )}

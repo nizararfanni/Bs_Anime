@@ -33,7 +33,7 @@ const Register = () => {
     }
     // simpan data di local storage
     localStorage.setItem("user", JSON.stringify(formData));
-    console.log("isi form", formData);
+    // console.log("isi form", formData);
 
     // redirect ke home
     navgiate("/login");

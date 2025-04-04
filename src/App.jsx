@@ -7,6 +7,7 @@ import BacaAnime from "./components/Fragments/BacaAnime";
 import SearchAnimeList from "./components/Fragments/SearchAnimeList";
 import Login from "./components/layouts/Login";
 import Register from "./components/layouts/Register";
+import Premium from "./components/layouts/Premium";
 
 const App = () => {
   return (
@@ -17,7 +18,8 @@ const App = () => {
       <Route path="/search/:title" element={<SearchAnimeList />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/register" element={<Register />} /> 
+      <Route path="/premium" element={<Premium />} /> 
     </Routes>
   );
 };
