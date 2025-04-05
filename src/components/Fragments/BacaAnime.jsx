@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { UseGetbacaAnime } from "../../hooks/UseGetAnime";
 import { Link, useParams } from "react-router-dom";
 

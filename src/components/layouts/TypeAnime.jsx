@@ -16,7 +16,7 @@ const TypeAnime = () => {
   const handleChangeType = (e) => {
     setSelectedType(e.target.value);
     setPages(1);
-    console.log("pilih apa", selectedType);
+    // console.log("pilih apa", selectedType);
   };
 
 
@@ -42,7 +42,7 @@ const TypeAnime = () => {
       </div>
     );
   }
-  console.log("animeTypeDetails", animeTypeDetails);
+  // console.log("animeTypeDetails", animeTypeDetails);
 
   return (
     <div className=" min-h-screen flex justify-center w-full">

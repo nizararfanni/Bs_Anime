@@ -69,7 +69,7 @@ export const UseGetDetailAnime = (id = "naruto") => {
         );
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
         const data = await response.json();
-        console.log("details", data.data);
+        // console.log("details", data.data);
         setDetailAnimes(data.data);
         setIsLoading(false);
       } catch (error) {
@@ -207,7 +207,7 @@ export const useFetchAnimeByTypeDetails = (jenis, page) => {
           `https://laravel-api-manga-scraper.vercel.app/api/api/jenis/${jenis}/${page}`
         );
         const result = await response.json();
-        console.log("data", result.data);
+        // console.log("data", result.data);
         setAnimeTypeDetails(result.data || []);
       } catch (error) {
         console.error("Error fetching anime by jenis:", error);

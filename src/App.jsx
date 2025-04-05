@@ -9,6 +9,7 @@ import Login from "./components/layouts/Login";
 import Register from "./components/layouts/Register";
 import Premium from "./components/layouts/Premium";
 import TypeAnime from "./components/layouts/TypeAnime";
+import LatesAnime from "./components/layouts/LatesAnime";
 
 const App = () => {
   return (
@@ -16,11 +17,11 @@ const App = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/detail/:id" element={<DetailAnime />} />
       <Route path="/baca/:url" element={<BacaAnime />} />
-      <Route path="/baca" element={<BacaAnime />} />
       <Route path="/search/:title" element={<SearchAnimeList />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/type" element={<TypeAnime />} />
+      <Route path="/latest" element={<LatesAnime />} />
       <Route path="/register" element={<Register />} />
       <Route path="/premium" element={<Premium />} />
     </Routes>
