@@ -24,7 +24,8 @@ const CardAnimeList = ({ infiniteAnimes, isLoading }) => {
             {/* OVERLAY DETAIL ANIME */}
             {/* link menuju detail anime menggunakan paramsuse */}
             <Link
-              to={`/detail/${anime?.link}`}
+            // apaan cokk kenapa berubah tadi pake link sekarang pake tittle
+              to={`/detail/${anime?.title}`}
               className="text-white hover:underline absolute left-0 bottom-0 right-0 top-1/2 text-center z-50 opacity-0 group-hover:opacity-100 "
             >
               View Details

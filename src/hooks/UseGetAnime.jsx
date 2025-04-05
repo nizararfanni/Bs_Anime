@@ -12,6 +12,7 @@ export const UseGetPopularAnime = () => {
           `https://laravel-api-manga-scraper.vercel.app/api/api/popular`
         );
         const data = await response.json();
+        // console.log("data", data.data);
         setPopularAnimes(data.data || []);
         setIsLoading(false);
       } catch (error) {
@@ -39,7 +40,7 @@ export const UseGetLatestAnime = (page = 1) => {
           `https://laravel-api-manga-scraper.vercel.app/api/api/terbaru/${page}`
         );
         const data = await response.json();
-        // console.log("data", data.data?.data.title);
+        // console.log("data", data.data);
         setLatestAnimes(data.data?.data || []);
         setIsLoading(false);
       } catch (error) {
@@ -55,7 +56,7 @@ export const UseGetLatestAnime = (page = 1) => {
 };
 
 // detailanime
-export const UseGetDetailAnime = (id = 1) => {
+export const UseGetDetailAnime = (id = "naruto") => {
   const [detailAnimes, setDetailAnimes] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -66,8 +67,9 @@ export const UseGetDetailAnime = (id = 1) => {
         const response = await fetch(
           `https://laravel-api-manga-scraper.vercel.app/api/api/detail/${id}`
         );
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
         const data = await response.json();
-        console.log(data);
+        console.log("details", data.data);
         setDetailAnimes(data.data);
         setIsLoading(false);
       } catch (error) {
@@ -83,23 +85,31 @@ export const UseGetDetailAnime = (id = 1) => {
   return { detailAnimes, isLoading };
 };
 
+const cleanUrl = (rawUrl) => {
+  if (!rawUrl) return;
+  return rawUrl.replace("https://komikindo3.com/", "");
+};
+
 // baca anime
-export const UseGetbacaAnime = (url) => {
+export const UseGetbacaAnime = (url ) => {
   const [bacaAnime, setBacaAnime] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const getDetailAnime = async () => {
       try {
         setIsLoading(true);
+
+        // hapus https jir berubah terus ni api
+        const cleanedUrl = cleanUrl(url);
+        const encodedUrl = encodeURIComponent(cleanedUrl); // Encode URL
         const response = await fetch(
-          `https://laravel-api-manga-scraper.vercel.app/api/api/baca/${url}`
+          `https://laravel-api-manga-scraper.vercel.app/api/api/baca/${encodedUrl}`
         );
-        // Cek apakah respons berupa JSON
         if (!response.ok) {
           throw new Error(`HTTP Error: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data.data);
+        console.log("baca", data.data);
         setBacaAnime(data?.data);
       } catch (error) {
         console.log("error", error);
@@ -157,7 +167,7 @@ export const UseSearchAnime = (title) => {
 };
 
 // fetch api according type anime
-export const UseGetAnimeByType = ( ) => {
+export const UseGetAnimeByType = () => {
   const [TypeAnimes, setTypeAnimes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -168,7 +178,7 @@ export const UseGetAnimeByType = ( ) => {
         const response = await fetch(
           `https://laravel-api-manga-scraper.vercel.app/api/api/jenis/`
         );
-        if(!response.ok) {
+        if (!response.ok) {
           throw new Error(`HTTP Error: ${response.status}`);
         }
         const result = await response.json();
@@ -184,8 +194,6 @@ export const UseGetAnimeByType = ( ) => {
   }, []);
   return { TypeAnimes, isLoading };
 };
-
-
 
 export const useFetchAnimeByTypeDetails = (jenis, page) => {
   const [animeTypeDetails, setAnimeTypeDetails] = useState(null);

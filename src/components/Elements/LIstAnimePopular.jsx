@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const cleanUrl = (rawUrl) => {
+  if (!rawUrl) return "";
+  return rawUrl.replace("https://komikindo3.com/komik/", "");
+};
 const LIstAnimePopular = ({ popularAnimes }) => {
   return (
     <div className="flex relative gap-4 overflow-hidden overflow-x-auto scrollbar-hidden items-center min-h-[300px]">
@@ -27,11 +31,10 @@ const LIstAnimePopular = ({ popularAnimes }) => {
           </div>
           {/* overlay detail anime link */}
           <Link
-            to={`/detail/${anime?.link}`}
+            to={`/detail/${cleanUrl(anime?.link)}`}
             className="text-white hover:underline absolute left-0 bottom-0 right-0 top-1/2 text-center z-50 opacity-0 group-hover:opacity-100 "
           >
             View Details
-           
           </Link>
           {/* overlay title */}
           <div className="absolute left-0 right-0 bottom-0 top-3/5 opacity-0 group-hover:opacity-100  transition-opacity duration-300 ease-in-out text-center font-bold text-2xl text-white z-10">

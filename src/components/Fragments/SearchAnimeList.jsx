@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const cleanUrl = (rawUrl) => {
+  if (!rawUrl) return "";
+  return rawUrl.replace("https://komikindo3.com/komik/", "");
+};
 const SearchAnimeList = ({
   handleKeyDown,
   searchAnime,
@@ -31,7 +35,7 @@ const SearchAnimeList = ({
             ? searchResults.map((anime, index) => (
                 <Link
                   key={index}
-                  to={`/detail/${anime.link}`}
+                  to={`/detail/${cleanUrl(anime.link)}`}
                   className="border-b border-gray-300 p-2  flex items-center gap-2 "
                 >
                   {anime.img && (
