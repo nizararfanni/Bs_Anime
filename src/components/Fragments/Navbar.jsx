@@ -57,18 +57,23 @@ const Navbar = () => {
               searchResults={searchAnimeId}
             ></SearchAnimeList>
           </div>
-          <ListItems
+          <Button
             Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
           >
             <Link to="/home">Home</Link>
-          </ListItems>
-          <ListItems Class={"hover:underline hover:bg-blue-500"}>
-           Latest Anime
-          </ListItems>
-          <ListItems Class={"hover:underline hover:bg-blue-500"}>
-            Trending
-          </ListItems>
-          <Button to={"/type"}>Type Animes</Button>
+          </Button>
+
+          <Button to={"/latest"} Class={" hover:bg-blue-500"}>
+            {" "}
+            Latest Anime
+          </Button>
+          <Button to={"/status"} Class={" hover:bg-blue-500"}>
+            {" "}
+            Completed anime
+          </Button>
+          <Button to={"/type"} Class={" hover:bg-blue-500"}>
+            Type Animes
+          </Button>
           <Button Class="bg-gray-300 hover:bg-gray-400"> Aplikasi </Button>
 
           <Button
@@ -108,23 +113,23 @@ const Navbar = () => {
                 searchResults={searchAnimeId}
               ></SearchAnimeList>
             </div>
-            <ListItems
+            <Button
               Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
             >
               Home
-            </ListItems>
-            <ListItems
+            </Button>
+            <Button
               Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
             >
-             Latest Anime
-            </ListItems>
-            <ListItems
-              Class={"hover:underline hover:bg-blue-500 active:bg-blue-500"}
-            >
+              Latest Anime
+            </Button>
+            <Button to={"/status"} Class={" hover:bg-blue-500"}>
               {" "}
-              Trending
-            </ListItems>
-            <Button to={"/type"}>Type Animes</Button>
+              Completed anime
+            </Button>
+            <Button to={"/type"} Class={" hover:bg-blue-500"}>
+              Type Animes
+            </Button>
             <Button Class="bg-gray-300 hover:bg-gray-400"> Aplikasi </Button>
             <Button
               Class="bg-pink-500 hover:bg-pink-600 text-white"

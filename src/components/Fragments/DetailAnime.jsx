@@ -6,7 +6,7 @@ const DetailAnime = () => {
   // slug id dari path detail:id
   const { id } = useParams();
   // id dari slug detail
-  const { detailAnimes, isLoading } = UseGetDetailAnime(id); 
+  const { detailAnimes, isLoading } = UseGetDetailAnime(id);
 
   if (isLoading) {
     return (
@@ -20,17 +20,17 @@ const DetailAnime = () => {
     if (!detailAnimes) {
       return (
         <div className="min-h-screen flex items-center justify-center bg-gray-300">
-        No detail available
-      </div>
-    );
+          No detail available
+        </div>
+      );
+    }
   }
-}
   // console.log("isi detail", detailAnimes?.chapter);
   const cleanUrl = (rawUrl) => {
     if (!rawUrl) return "";
     return rawUrl.replace("https://komikindo3.com/", "");
   };
-  
+
   return (
     <div className="bg-gradient-to-r from-gray-100 via-gray-300/50 to-gray-300 min-h-screen w-full flex justify-center items-center">
       <div className="w-full flex flex-col justify-center items-center">
@@ -64,7 +64,7 @@ const DetailAnime = () => {
                 </div>
                 <div className="col-span-1">
                   <p className="text-sm font-semibold">
-                    Genre: {detailAnimes?.genre[0]},{detailAnimes?.genre[1]}
+                    {/* Genre: {detailAnimes?.genre[0]},{detailAnimes?.genre[1]} */}
                   </p>
                 </div>
               </div>
@@ -86,7 +86,7 @@ const DetailAnime = () => {
                     >
                       <p>
                         <Link
-                          to={`/baca/${cleanUrl(anime.url)}`} // Ganti anime.chapter[0].url jadi anime.url
+                          to={`/baca/${anime.url}`} 
                           className="text-blue-500 hover:underline"
                         >
                           {anime.chapter}

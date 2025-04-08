@@ -33,8 +33,8 @@ const BacaAnime = () => {
         <div class="absolute inset-0 backdrop-blur-sm bg-black/20"></div>
         <div className="flex flex-col z-10">
           {/* render anime list  */}
-          {bacaAnime?.list && bacaAnime?.list.length > 0 ? (
-            bacaAnime.list.map((chapter, index) => (
+          {bacaAnime?.img && bacaAnime?.img.length > 0 ? (
+            bacaAnime.img.map((chapter, index) => (
               <div className="relative" key={index}>
                 <h3 className="text-center absolute inset-0 text-white font-semibold ">{`Page ${
                   index + 1
@@ -50,13 +50,13 @@ const BacaAnime = () => {
         {/* tombol prev dan next di bacaANime */}
         <div className="z-10 flex justify-evenly shadow-md items-center">
           <Link
-            to={`/baca/${cleanURl(bacaAnime?.back_chapter)}`}
+            to={`/baca/${bacaAnime?.back_chapter}`}
             className="p-3 bg-amber-300 rounded-md font-semibold my-4 hover:underline transform transition duration-300 ease-in-out"
           >
             Previous Chapters
           </Link>
           <Link
-            to={`/baca/${cleanURl(bacaAnime?.next_chapter)}`}
+            to={`/baca/${bacaAnime?.next_chapter}`}
             className="p-3 bg-amber-300 rounded-md font-semibold my-4 hover:underline transform transition duration-300 ease-in-out"
           >
             Nexxt Chapters

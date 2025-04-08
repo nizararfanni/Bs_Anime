@@ -10,6 +10,7 @@ import Register from "./components/layouts/Register";
 import Premium from "./components/layouts/Premium";
 import TypeAnime from "./components/layouts/TypeAnime";
 import LatesAnime from "./components/layouts/LatesAnime";
+import AnimeStatus from "./components/layouts/AnimeStatus";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/type" element={<TypeAnime />} />
       <Route path="/latest" element={<LatesAnime />} />
+      <Route path="/status" element={<AnimeStatus />} />
       <Route path="/register" element={<Register />} />
       <Route path="/premium" element={<Premium />} />
     </Routes>

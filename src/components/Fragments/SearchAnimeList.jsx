@@ -35,7 +35,7 @@ const SearchAnimeList = ({
             ? searchResults.map((anime, index) => (
                 <Link
                   key={index}
-                  to={`/detail/${cleanUrl(anime.link)}`}
+                  to={`/detail/${anime.url}`}
                   className="border-b border-gray-300 p-2  flex items-center gap-2 "
                 >
                   {anime.img && (

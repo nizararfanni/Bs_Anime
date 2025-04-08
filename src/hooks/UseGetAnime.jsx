@@ -12,7 +12,7 @@ export const UseGetPopularAnime = () => {
           `https://laravel-api-manga-scraper.vercel.app/api/api/popular`
         );
         const data = await response.json();
-        // console.log("data", data.data);
+        // console.log("data pop", data.data);
         setPopularAnimes(data.data || []);
         setIsLoading(false);
       } catch (error) {
@@ -91,7 +91,7 @@ const cleanUrl = (rawUrl) => {
 };
 
 // baca anime
-export const UseGetbacaAnime = (url ) => {
+export const UseGetbacaAnime = (url) => {
   const [bacaAnime, setBacaAnime] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -109,7 +109,7 @@ export const UseGetbacaAnime = (url ) => {
           throw new Error(`HTTP Error: ${response.status}`);
         }
         const data = await response.json();
-        console.log("baca", data.data);
+        // console.log("baca", data.data);
         setBacaAnime(data?.data);
       } catch (error) {
         console.log("error", error);
@@ -148,7 +148,7 @@ export const UseSearchAnime = (title) => {
         );
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
         const data = await response.json();
-        console.log("Hasil pencarian:", data.data);
+        // console.log("Hasil pencarian:", data.data);
         setSearchAnimeId(data.data || []);
       } catch (error) {
         console.error("Error fetching search results:", error);
@@ -176,7 +176,7 @@ export const UseGetAnimeByType = () => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `https://laravel-api-manga-scraper.vercel.app/api/api/jenis/`
+          `https://laravel-api-manga-scraper.vercel.app/api/api/type`
         );
         if (!response.ok) {
           throw new Error(`HTTP Error: ${response.status}`);
@@ -204,10 +204,10 @@ export const useFetchAnimeByTypeDetails = (jenis, page) => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `https://laravel-api-manga-scraper.vercel.app/api/api/jenis/${jenis}/${page}`
+          `https://laravel-api-manga-scraper.vercel.app/api/api/type/${jenis}/${page}`
         );
         const result = await response.json();
-        // console.log("data", result.data);
+        // console.log("data type", result.data);
         setAnimeTypeDetails(result.data || []);
       } catch (error) {
         console.error("Error fetching anime by jenis:", error);
@@ -220,4 +220,56 @@ export const useFetchAnimeByTypeDetails = (jenis, page) => {
   }, [jenis, page]);
 
   return { animeTypeDetails, isLoading };
+};
+
+export const UseFecthAnimeCopleted = () => {
+  const [animeStatus, setAnimeStatus] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const animeCompleted = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://laravel-api-manga-scraper.vercel.app/api/api/status`
+        );
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+        const result = await response.json();
+        // console.log("data status", result.data);
+        setAnimeStatus(result.data || []);
+      } catch (error) {
+        console.log("errow", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    animeCompleted();
+  }, []);
+
+  return { animeStatus, isLoading };
+};
+
+export const UsefetchListAnimeCompleted = (status, page) => {
+  const [listAnimeCompleted, setListAnimeCompleted] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const listAnimeCompleted = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://laravel-api-manga-scraper.vercel.app/api/api/status/${status}/${page}`
+        );
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+        const result = await response.json();
+        // console.log("data status", result.data);
+        setListAnimeCompleted(result.data || []);
+      } catch (error) {
+        console.log("error", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    listAnimeCompleted();
+  }, [status, page]);
+
+  return { listAnimeCompleted, isLoading };
 };
